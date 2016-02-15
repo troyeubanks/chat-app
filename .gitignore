@@ -1,0 +1,5 @@
+.meteor/local/
+packages/
+packages/npm-container/
+!packages/npm-container/index.js
+!packages/npm-container/package.js
