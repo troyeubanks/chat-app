@@ -14,7 +14,14 @@ LandingPage = React.createClass({
       <div id="content">
         <div className="container">
           <h1>Welcome to the Sample Chat App!</h1>
+          <hr />
+
+          <div className="login-button">
+            <AccountsUIWrapper />
+          </div>
+
         </div>
+
       </div>
     );
   }
