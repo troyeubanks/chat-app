@@ -11,8 +11,10 @@ LandingPage = React.createClass({
 
   render: function() {
     return (
-      <div className="content">
-        Welcome to the Sample Chat App!
+      <div id="content">
+        <div className="container">
+          <h1>Welcome to the Sample Chat App!</h1>
+        </div>
       </div>
     );
   }
