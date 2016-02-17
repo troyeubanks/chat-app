@@ -7,8 +7,7 @@ App = React.createClass({
   },
 
   getMeteorData: function() {
-    return {
-    };
+    return {};
   },
 
   render: function () {
