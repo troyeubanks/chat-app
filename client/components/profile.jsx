@@ -44,7 +44,54 @@ Profile = React.createClass({
     }
   },
 
+  handleDblClick: function(interest) {
+    return function(e) {
+      e.preventDefault();
+
+      var stateIndex = _.indexOf( this.state.newInterests, interest );
+      var dbIndex = _.indexOf( this.data.user.profile.interests, interest );
+
+      if (stateIndex !== -1) {
+
+        var int = this.state.newInterests;
+        int.splice(stateIndex, 1);
+        this.setState({ 'newInterests': int });
+
+      } else if ( dbIndex !== -1 ) {
+        var int = this.data.user.profile.interests;
+        int.splice(dbIndex, 1);
+
+
+        Meteor.users.update( Meteor.userId(), { $set: { profile: { 'interests': int }}} );
+      }
+    }.bind(this)
+  },
+
   render: function() {
+    if (this.data.user) {
+      var renderInterests = this.state.newInterests.map(function (interest, i) {
+        if (interest) {
+          return (
+            <li key={ 'state' + i }
+            onDoubleClick={ this.handleDblClick(interest) }>
+                  { interest }
+            </li>
+            )
+        }
+      }.bind(this))
+
+      var renderProfileInterests = this.data.user.profile.interests.map(function (interest, i) {
+        if (interest) {
+          return (
+            <li key={ 'db' + i }
+            onDoubleClick={ this.handleDblClick(interest) }>
+                  { interest }
+            </li>
+            )
+        }
+      }.bind(this))
+    }
+
     return (
       <section id="profile">
       {
@@ -65,7 +112,7 @@ Profile = React.createClass({
                 </label>
                 <input type="text"
                        ref="location"
-                       defaultValue='' />
+                       defaultValue={ this.data.user.profile.location } />
               </div>
             </div>
 
@@ -78,6 +125,16 @@ Profile = React.createClass({
                        type="text"
                        placeholder="Add an interest"
                        onKeyPress={ this.handleKeyPress } />
+
+                <ul>
+                {
+                  renderProfileInterests
+                }
+
+                {
+                  renderInterests
+                }
+                </ul>
 
               </div>
             </div>

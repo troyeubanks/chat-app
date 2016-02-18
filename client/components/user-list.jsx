@@ -9,7 +9,7 @@ UserList = React.createClass({
     console.log("Meteor users", Meteor.users.find({}).fetch());
     return {
       user: Meteor.user(),
-      users: Meteor.users.find({}).fetch()
+      users: Meteor.users.find({}, { sort: { createdAt: 1 }}).fetch()
     };
   },
 
