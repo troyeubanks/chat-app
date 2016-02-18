@@ -1,5 +1,4 @@
 Meteor.methods({
-
   updateProfile: function(location, interests) {
     check(location, String);
     check(interests, [String]);
@@ -10,8 +9,10 @@ Meteor.methods({
     }
 
     var totalInterests = user.profile.interests;
-    _.each(interests, function (interest) {
-      totalInterests.push(interest);
+    _.forEach(interests, function (interest) {
+      if (interest) {
+        totalInterests.push(interest);
+      }
     });
 
     user.profile.location = location;
