@@ -40,7 +40,7 @@ LandingPage = React.createClass({
               <div className="row">
 
                 <div className="bg-info col-md-6">
-                Please login to get started
+                  Please login to get started
                 </div>
 
                 <div className="login-button col-md-6">
