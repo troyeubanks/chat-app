@@ -44,7 +44,7 @@ Profile = React.createClass({
     }
   },
 
-  handleDblClick: function(interest) {
+  removeInterest: function(interest) {
     return function(e) {
       e.preventDefault();
 
@@ -72,24 +72,45 @@ Profile = React.createClass({
       var renderInterests = this.state.newInterests.map(function (interest, i) {
         if (interest) {
           return (
-            <li key={ 'state' + i }
-            onDoubleClick={ this.handleDblClick(interest) }>
-                  { interest }
+            <li key={ 'state' + i }>
+              <div className="row">
+                <div className="col-sm-1"></div>
+                <div className="interest col-sm-10">
+                  <h2 className="col-sm-9">{ interest }</h2>
+                  <div className="remove col-sm-offset-2 col-sm-1"
+                       onClick={ this.removeInterest(interest) }>
+                    <i className="material-icons">clear</i>
+                  </div>
+                </div>
+              </div>
             </li>
-            )
+          )
         }
       }.bind(this))
 
       var renderProfileInterests = this.data.user.profile.interests.map(function (interest, i) {
         if (interest) {
           return (
-            <li key={ 'db' + i }
-            onDoubleClick={ this.handleDblClick(interest) }>
-                  { interest }
+            <li key={ 'db' + i }>
+              <div className="row">
+                <div className="col-sm-1"></div>
+                <div className="interest col-sm-10">
+                  <h2 className="col-sm-9">{ interest }</h2>
+                  <div className="remove col-sm-offset-2 col-sm-1"
+                       onClick={ this.removeInterest(interest) }>
+                    <i className="material-icons">clear</i>
+                  </div>
+                </div>
+              </div>
             </li>
-            )
+          )
         }
       }.bind(this))
+    }
+
+    if (this.data.user) {
+      var joinDate = this.data.user.createdAt;
+      var joinDateString = joinDate.getMonth() + '/' + joinDate.getDate() + '/' + joinDate.getFullYear();
     }
 
     return (
@@ -97,18 +118,19 @@ Profile = React.createClass({
       {
         this.data.user ?
           <div className="container">
-            <div className="row">
-              <div className="username col-md-4">
-                Username: { this.data.user.username }
+
+            <div className="user-info row">
+              <div className="username col-sm-4">
+                <h1>Username: { this.data.user.username }</h1>
               </div>
 
-              <div className="join-date col-md-4">
-                Member Since: { this.data.user.createdAt.toDateString() }
+              <div className="join-date col-sm-4">
+                <h1>Member Since: { joinDateString }</h1>
               </div>
 
-              <div className="location col-md-4">
+              <div className="location col-sm-4">
                 <label htmlFor="location">
-                  Location:
+                  <h1>Location:</h1>
                 </label>
                 <input type="text"
                        ref="location"
@@ -116,16 +138,22 @@ Profile = React.createClass({
               </div>
             </div>
 
-            <div className="row">
-              <div className="interests col-md-12">
-                <h3>Interests</h3>
-                <input ref={ function(ref) {
+
+            <div className="interest-container row">
+              <div className="interest-header">
+                <h1 className="col-sm-3 col-sm-offset-2">Interests</h1>
+                <div className="col-sm-1"></div>
+                <input className="col-sm-4"
+                       ref={ function(ref) {
                          this.interestInput = ref;
                        }.bind(this)}
                        type="text"
                        placeholder="Add an interest"
                        onKeyPress={ this.handleKeyPress } />
+                <div className="col-sm-2"></div>
+              </div>
 
+              <div className="interest-list col-sm-10 col-sm-offset-1">
                 <ul>
                 {
                   renderProfileInterests
@@ -135,7 +163,6 @@ Profile = React.createClass({
                   renderInterests
                 }
                 </ul>
-
               </div>
             </div>
 

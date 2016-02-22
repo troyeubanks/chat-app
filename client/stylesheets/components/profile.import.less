@@ -1,0 +1,84 @@
+@profile-box-border: 1px solid rgba(5, 5, 5, 0.2);
+@profile-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+
+section#profile {
+  height: 100%;
+  width: 100%;
+  margin-top: 40px;
+  padding-bottom: 40px;
+
+  input {
+    margin-left: 5px;
+    padding-left: 10px;
+    border-radius: 5px;
+    font-size: 30px;
+  }
+
+  .user-info {
+    .username, .join-date, .location {
+      background-color: @chat-light;
+      vertical-align: middle;
+      min-height: 8em;
+      padding: 10px;
+      text-align: center;
+      font-size: 1.25em;
+      border-radius: 10px;
+      border: @profile-box-border;
+      box-shadow: @profile-box-shadow;
+
+    }
+  }
+
+  .interest-container {
+    padding-bottom: 40px;
+
+    .interest-header {
+      background-color: @chat-light;
+      border: @profile-box-border;
+      border-radius: 10px;
+      box-shadow: @profile-box-shadow;
+      height: 4em;
+      margin-top: 10px;
+
+      > input {
+        margin-top: 10px;
+      }
+
+    }
+
+    .interest-list {
+      padding: 10px;
+      border: @profile-box-border;
+      box-shadow: @profile-box-border;
+      border-radius: 10px;
+
+      ul {
+        list-style-type: none;
+        padding-left: 0px;
+        li {
+          div {
+
+            .interest {
+              background-color: @chat-yellow;
+              border-radius: 5px;
+              box-shadow: @profile-box-shadow;
+              margin: 3px 0 3px 0;
+              line-height: 2em;
+
+              h2 {
+                font-weight: normal;
+              }
+            }
+
+            &.remove {
+              cursor: pointer;
+              padding: 20px 10px 10px 10px;
+              height: 100%;
+              line-height: 2em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
