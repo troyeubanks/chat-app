@@ -114,69 +114,71 @@ Profile = React.createClass({
     }
 
     return (
-      <section id="profile">
-      {
-        this.data.user ?
-          <div className="container">
+      <div id="content">
+        <section id="profile">
+        {
+          this.data.user ?
+            <div className="container">
 
-            <div className="user-info row">
-              <div className="username col-sm-4">
-                <h1>Username: { this.data.user.username }</h1>
+              <div className="user-info row">
+                <div className="username col-sm-4">
+                  <h1>Username: { this.data.user.username }</h1>
+                </div>
+
+                <div className="join-date col-sm-4">
+                  <h1>Member Since: { joinDateString }</h1>
+                </div>
+
+                <div className="location col-sm-4">
+                  <label htmlFor="location">
+                    <h1>Location:</h1>
+                  </label>
+                  <input type="text"
+                         ref="location"
+                         defaultValue={ this.data.user.profile.location } />
+                </div>
               </div>
 
-              <div className="join-date col-sm-4">
-                <h1>Member Since: { joinDateString }</h1>
+
+              <div className="interest-container row">
+                <div className="interest-header">
+                  <h1 className="col-sm-3 col-sm-offset-2">Interests</h1>
+                  <div className="col-sm-1"></div>
+                  <input className="col-sm-4"
+                         ref={ function(ref) {
+                           this.interestInput = ref;
+                         }.bind(this)}
+                         type="text"
+                         placeholder="Add an interest"
+                         onKeyPress={ this.handleKeyPress } />
+                  <div className="col-sm-2"></div>
+                </div>
+
+                <div className="interest-list col-sm-10 col-sm-offset-1">
+                  <ul>
+                  {
+                    renderProfileInterests
+                  }
+
+                  {
+                    renderInterests
+                  }
+                  </ul>
+                </div>
               </div>
 
-              <div className="location col-sm-4">
-                <label htmlFor="location">
-                  <h1>Location:</h1>
-                </label>
-                <input type="text"
-                       ref="location"
-                       defaultValue={ this.data.user.profile.location } />
+              <div className="row">
+                <div className="save-profile btn btn-primary"
+                     onClick={ this.saveProfile }>
+                  Save
+                </div>
               </div>
             </div>
-
-
-            <div className="interest-container row">
-              <div className="interest-header">
-                <h1 className="col-sm-3 col-sm-offset-2">Interests</h1>
-                <div className="col-sm-1"></div>
-                <input className="col-sm-4"
-                       ref={ function(ref) {
-                         this.interestInput = ref;
-                       }.bind(this)}
-                       type="text"
-                       placeholder="Add an interest"
-                       onKeyPress={ this.handleKeyPress } />
-                <div className="col-sm-2"></div>
-              </div>
-
-              <div className="interest-list col-sm-10 col-sm-offset-1">
-                <ul>
-                {
-                  renderProfileInterests
-                }
-
-                {
-                  renderInterests
-                }
-                </ul>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="save-profile btn btn-primary"
-                   onClick={ this.saveProfile }>
-                Save
-              </div>
-            </div>
-          </div>
-        :
-          <div></div>
-      }
-      </section>
+          :
+            <div>Please login to access this page</div>
+        }
+        </section>
+      </div>
     );
   }
 });
