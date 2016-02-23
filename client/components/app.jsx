@@ -13,7 +13,13 @@ App = React.createClass({
   render: function () {
     return (
       <div id="app-content">
-        <main>{ this.props.content }</main>
+        <Nav />
+
+        <div className="section-content">
+          <div className="container">
+            <main>{ this.props.content }</main>
+          </div>
+        </div>
       </div>
     );
   }

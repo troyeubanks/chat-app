@@ -13,6 +13,7 @@ Nav = React.createClass({
   logoutClicked: function(e) {
     e.preventDefault();
 
+    FlowRouter.go('root');
     Meteor.logout();
   },
 
@@ -27,6 +28,11 @@ Nav = React.createClass({
     return (
       <div id="nav">
         <nav>
+          <div className="logo"
+               onClick={ this.navClicked('root') }>
+            <h1>ChatApp</h1>
+          </div>
+          <hr />
           <ul className="nav-list">
             <li onClick={ this.navClicked('profile') }>
                 <i className="material-icons">account_circle</i>

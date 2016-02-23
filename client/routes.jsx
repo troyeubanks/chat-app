@@ -14,7 +14,7 @@ FlowRouter.route('/profile', {
   }
 });
 
-FlowRouter.route('/userlist', {
+FlowRouter.route('/users', {
   name: "userlist",
 
   action: function( params, queryParams ) {

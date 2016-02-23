@@ -1,0 +1,40 @@
+@profile-background: @chat-primary;
+
+div#nav {
+  height: 100%;
+  width: 300px;
+  display: inline-block;
+  position: fixed;
+  float: left;
+
+  padding: 20px;
+  font-size: 48px;
+  text-decoration: none;
+
+  background-color: @profile-background;
+
+  h1 {
+    font-size: 52px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .material-icons {
+    font-size: 36px;
+  }
+
+  ul {
+    width: 100%;
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+      color: rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+
+      :hover {
+        color: rgba(0, 0, 0, 1);
+      }
+    }
+  }
+}
