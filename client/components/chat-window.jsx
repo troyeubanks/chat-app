@@ -35,6 +35,8 @@ ChatWindow = React.createClass({
 
   render: function() {
     var chatClass = 'chat-window' + (this.state.open ? ' open' : '');
+    var otherUsername = this.props.chat.usernames[0] === Meteor.user().username ?
+                        this.props.chat.usernames[1] : this.props.chat.usernames[0];
     return (
       <div className="row">
         <div className="col-sm-3">
@@ -42,7 +44,7 @@ ChatWindow = React.createClass({
                onClick={ this.toggleChat }>
             <div className="row chat-header">
               <div className="other-username col-sm-5 col-sm-offset-1">
-                <h2>{ this.props.chat.otherUsername }</h2>
+                <h2>{ otherUsername }</h2>
               </div>
               <div className="close col-sm-1 col-sm-offset-5">
                 x
@@ -52,14 +54,14 @@ ChatWindow = React.createClass({
             <div className="chat-body">
               <div className="messages">
                 {
-                  this.props.chat.messages && this.chat.messages.length ?
-                    this.props.chat.messages.map( function(message) {
+                  this.props.chat.messages ?
+                    this.props.chat.messages.map( function(message, counter) {
                       return (
-                        <p>{ message }</p>
+                        <p key={ counter++ }>{ message.body }</p>
                       )
                     })
                   :
-                    <p>'No messages'</p>
+                    <p>No messages</p>
                 }
               </div>
 

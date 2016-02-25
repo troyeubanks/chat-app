@@ -16,11 +16,35 @@ Meteor.methods({
 
     if ( !chatExists ) {
       var participants = [user._id, otherUser._id];
+      var usernames = [user.username, otherUser.username];
       ChatCollection.insert({
         participants: participants,
-        otherUsername: otherUser.username
+        usernames: usernames,
+        messages: []
       });
     }
+  },
 
+  insertMessage: function(chatId, message) {
+    var user = Meteor.user();
+    var chat = ChatCollection.findOne({ _id: chatId });
+
+    if ( !_.contains(chat.participants, user._id) ) {
+      throw new Meteor.Error('unauthorized', 'User not authorized to insert message');
+    }
+
+    if ( user && chat ) {
+      var timestamp = Date.now();
+      ChatCollection.update({ _id: chat._id },
+        {
+          $push: {
+            messages: {
+              body: message,
+              sender: user._id
+            }
+          }
+        }
+      );
+    }
   }
 });

@@ -9,6 +9,8 @@ Schema.ChatMessage = new SimpleSchema({
         return new Date();
       } else if (this.isUpsert) {
         return { $setOnInsert: new Date() };
+      } else if (this.isUpdate) {
+        return new Date();
       } else {
         this.unset();
       }
@@ -16,25 +18,25 @@ Schema.ChatMessage = new SimpleSchema({
   },
 
   body: {
-    type: String,
-    optional: true
+    type: String
+  },
+
+  sender: {
+    type: String
   }
 });
 
 Schema.Chat = new SimpleSchema({
   participants: {
-    type: [String],
-    optional: false
+    type: [String]
   },
 
-  otherUsername: {
-    type: String,
-    optional: false
+  usernames: {
+    type: [String]
   },
 
   messages: {
-    type: [Schema.ChatMessage],
-    optional: true
+    type: [Schema.ChatMessage]
   }
 });
 
