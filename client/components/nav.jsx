@@ -7,7 +7,9 @@ Nav = React.createClass({
   },
 
   getMeteorData: function() {
-    return {};
+    return {
+      chats: ChatCollection.find({ participants: Meteor.userId() }).fetch()
+    };
   },
 
   logoutClicked: function(e) {
@@ -35,23 +37,31 @@ Nav = React.createClass({
           <hr />
           <ul className="nav-list">
             <li onClick={ this.navClicked('profile') }>
-                <i className="material-icons">account_circle</i>
-                Profile
+              <div className="nav-element ">
+                <h2>
+                  <i className="material-icons">account_circle</i>
+                  Profile
+                </h2>
+              </div>
             </li>
             <li onClick={ this.navClicked('userlist') }>
-                <i className="material-icons">list</i>
-                User List
+              <div className="nav-element">
+                <h2>
+                  <i className="material-icons">list</i>
+                  User List
+                </h2>
+              </div>
             </li>
             <li onClick={ this.logoutClicked }>
-              <i className="material-icons">exit_to_app</i>
-              Logout
+              <div className="nav-element">
+                <h2>
+                  <i className="material-icons">exit_to_app</i>
+                  Logout
+                </h2>
+              </div>
             </li>
           </ul>
         </nav>
-
-        <div id="profile">
-
-        </div>
       </div>
     )
   }
