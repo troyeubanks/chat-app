@@ -7,7 +7,8 @@ LandingPage = React.createClass({
 
   getMeteorData: function() {
     return {
-      user: Meteor.user()
+      user: Meteor.user(),
+      chats: ChatCollection.find({ participants: Meteor.userId() }).fetch()
     };
   },
 
@@ -24,12 +25,20 @@ LandingPage = React.createClass({
 
         {
           this.data.user ?
-            <div className="row">
-
-              <div className="instructions">
-                You are logged in as: { this.data.user.username }
+            <div id="bubble-container">
+              <div className="row">
+                {
+                  this.data.chats ?
+                    this.data.chats.map( function(chat, counter) {
+                      return (
+                        <ChatBubble key={ counter++ }
+                                    chatId={ chat._id } />
+                      )
+                    })
+                  :
+                    ''
+                }
               </div>
-
             </div>
           :
             <div className="row">

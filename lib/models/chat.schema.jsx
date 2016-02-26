@@ -31,6 +31,14 @@ Schema.Chat = new SimpleSchema({
     type: [String]
   },
 
+  topic: {
+    type: String
+  },
+
+  image: {
+    type: String
+  },
+
   usernames: {
     type: [String]
   },

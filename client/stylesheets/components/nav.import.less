@@ -1,9 +1,14 @@
+@bubble-form-border: 1px solid @chat-primary;
+@bubble-form-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+@bubble-form-border-radius: 0 10px 10px 0;
+
 div#nav {
   height: 100%;
   width: 300px;
   display: inline-block;
   position: fixed;
   float: left;
+  top: 0;
 
   padding: 20px;
   font-size: 48px;
@@ -43,6 +48,39 @@ div#nav {
       &.logout {
 
       }
+    }
+  }
+
+  .bubble-form {
+    position: fixed;
+    display: none;
+    left: 300px;
+    width: 300px;
+    padding: 10px;
+    border: @bubble-form-border;
+    box-shadow: @bubble-form-shadow;
+    border-radius: @bubble-form-border-radius;
+    background-color: @chat-light;
+    z-index: 1;
+
+    &.open {
+      display: block;
+    }
+
+    .bubble-image > img {
+      width: 270px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      padding-bottom: 10px;
+      border-radius: @bubble-form-border-radius;
+    }
+    input {
+      font-size: 24px;
+      display: block;
+      margin: 10 auto;
+      width: 100%;
+      padding-left: 10px;
     }
   }
 }

@@ -1,0 +1,43 @@
+@chat-bubble-border: 1px solid @chat-primary;
+@chat-bubble-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+@chat-bubble-border-radius: 10px;
+
+div.bubble-tray {
+  padding: 5px;
+  position: relative;
+
+  div.chat-bubble {
+    border: @chat-bubble-border;
+    box-shadow: @chat-bubble-shadow;
+    border-radius: @chat-bubble-border-radius;
+
+    .bubble-image {
+      width: 100%;
+
+      > img {
+        display: block;
+        margin: 10px auto;
+        width: 90%;
+        height: auto;
+      }
+    }
+
+    .bubble-interest {
+      text-align: center;
+    }
+
+    .favorite {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+      font-size: 32pt;
+      cursor: pointer;
+      color: #fff45e;
+      opacity: 0.6;
+
+      &:hover {
+        opacity: 1.0;
+      }
+    }
+  }
+}

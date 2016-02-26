@@ -6,7 +6,7 @@
 @import "/client/stylesheets/components/profile.import.less";
 @import "/client/stylesheets/components/nav.import.less";
 @import "/client/stylesheets/components/user-list.import.less";
-@import "/client/stylesheets/components/chat-window.import.less";
+@import "/client/stylesheets/components/chat-bubble.import.less";
 
 //Color scheme
 @import "./color-scheme.import.less";
@@ -23,8 +23,12 @@ div#content {
   margin-top: 40px;
 }
 
+div.container {
+  position: relative;
+  z-index: 0;
+}
+
 div.section-content {
-  display: inline-block;
   height: 100%;
   width: 100%;
   padding: 0 0 0 300px;
