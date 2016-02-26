@@ -1,23 +1,26 @@
 Meteor.methods({
-  insertChat: function(otherUserId) {
-    var user = Meteor.user();
-    var otherUser = Meteor.users.findOne(otherUserId);
+  insertChatRoom: function(topic, image) {
+    check(topic, String);
+    check(image, String);
 
-    if (!otherUser || !user) {
-      throw new Meteor.Error('user-not-found', 'User not found for chat creation');
+    var user = Meteor.user();
+
+    if ( !user ) {
+      throw new Meteor.Error('user-not-found', 'No user found');
     }
 
     var chatExists = ChatCollection.findOne({
-      $or: [
-        { participants: [user._id, otherUser._id] },
-        { participants: [otherUser._id, user._id] }
-      ]
+      topic: topic
     });
 
-    if ( !chatExists ) {
-      var participants = [user._id, otherUser._id];
-      var usernames = [user.username, otherUser.username];
+    if ( chatExists ) {
+      throw new Meteor.Error('chat-exists', 'Chat with topic already exists');
+    } else {
+      var participants = [user._id];
+      var usernames = [user.username];
       ChatCollection.insert({
+        topic: topic,
+        image: image,
         participants: participants,
         usernames: usernames,
         messages: []

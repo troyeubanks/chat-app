@@ -3,7 +3,9 @@ Nav = React.createClass({
   mixins: [ReactMeteorData],
 
   getInitialState: function() {
-    return {};
+    return {
+      open: false
+    }
   },
 
   getMeteorData: function() {
@@ -26,7 +28,59 @@ Nav = React.createClass({
     };
   },
 
+  toggleNewBubbleForm: function(e) {
+    e.preventDefault();
+
+    this.setState({ open: !this.state.open });
+  },
+
+  handleKeyDown: function(e) {
+    if (e.which === 13) {
+      var topic = this.bubbleInput.value.trim();
+      var imageSrc = this.bubbleImage.src;
+
+      Meteor.call('insertChatRoom', topic, imageSrc, function (error) {
+        if (error) {
+          console.error("Error: ", error);
+        }
+      });
+
+      this.bubbleInput.value = '';
+      this.setState({ open: false });
+      //TODO reset this.bubbleImage when image uploading is implemented
+      e.preventDefault();
+    }
+  },
+
   render: function() {
+
+    var renderBubbleForm = function() {
+      var bubbleFormClass = "bubble-form" + ( this.state.open ? " open" : "");
+
+      //TODO Add image uploading
+      var imageSrc = "/images/default_profile.png";
+
+      return (
+        <div className={ bubbleFormClass }>
+          <div className="bubble-image">
+            <img src={ imageSrc }
+                 ref={ function(ref) {
+                         this.bubbleImage = ref;
+                     }.bind(this) } />
+          </div>
+
+          <div className="interest-input">
+            <input type="text"
+                   ref={ function(ref) {
+                           this.bubbleInput = ref;
+                       }.bind(this) }
+                   onKeyDown={ this.handleKeyDown }
+                   placeholder="type the chatroom topic" />
+          </div>
+        </div>
+      )
+    }.bind(this);
+
     return (
       <div id="nav">
         <nav>
@@ -34,8 +88,12 @@ Nav = React.createClass({
                onClick={ this.navClicked('root') }>
             <h1>ChatApp</h1>
           </div>
+
+          { renderBubbleForm() }
+
           <hr />
           <ul className="nav-list">
+
             <li onClick={ this.navClicked('profile') }>
               <div className="nav-element ">
                 <h2>
@@ -44,14 +102,18 @@ Nav = React.createClass({
                 </h2>
               </div>
             </li>
-            <li onClick={ this.navClicked('userlist') }>
+
+            <li onClick={ this.toggleNewBubbleForm }>
               <div className="nav-element">
-                <h2>
-                  <i className="material-icons">list</i>
-                  User List
-                </h2>
+                <div className="create-bubble">
+                  <h2>
+                    <i className="material-icons">add_circle_outline</i>
+                    Add Chat
+                  </h2>
+                </div>
               </div>
             </li>
+
             <li onClick={ this.logoutClicked }>
               <div className="nav-element">
                 <h2>
