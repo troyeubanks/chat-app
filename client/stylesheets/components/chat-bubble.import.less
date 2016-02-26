@@ -10,6 +10,21 @@ div.bubble-tray {
     border: @chat-bubble-border;
     box-shadow: @chat-bubble-shadow;
     border-radius: @chat-bubble-border-radius;
+    background-color: @chat-pink;
+    position: relative;
+    transform: scale(1);
+    transition: all 0.1s ease-in-out;
+    -moz-transform: scale(1);
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transform: scale(1);
+    -ms-transition: all 0.1s ease-in-out;
+    -webkit-transform: scale(1);
+    -webkit-transition: all 0.1s ease-in-out;
+    z-index: 1;
+
+    > hr {
+      margin: 10px auto;
+    }
 
     .bubble-image {
       width: 100%;
@@ -24,6 +39,10 @@ div.bubble-tray {
 
     .bubble-interest {
       text-align: center;
+
+      > h2 {
+        margin-top: 10px;
+      }
     }
 
     .favorite {
@@ -38,6 +57,18 @@ div.bubble-tray {
       &:hover {
         opacity: 1.0;
       }
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.1s ease-in-out;
+      -moz-transform: scale(1.1);
+      -moz-transition: all 0.1s ease-in-out;
+      -ms-transform: scale(1.1);
+      -ms-transition: all 0.1s ease-in-out;
+      -webkit-transform: scale(1.1);
+      -webkit-transition: all 0.1s ease-in-out;
+      z-index: 2;
     }
   }
 }
