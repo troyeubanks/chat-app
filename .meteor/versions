@@ -19,6 +19,7 @@ boilerplate-generator@1.0.4
 caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
+camrongodbout:react-masonry-meteor@0.0.8
 check@1.1.0
 coffeescript@1.0.11
 cosmos:browserify@0.9.3

@@ -5,75 +5,78 @@
 
 @hover-zoom-scale: scale(1.05);
 
-div.bubble-tray {
-  padding: 5px;
-  position: relative;
+div#bubble-container {
 
-  div.chat-bubble {
-    border: @chat-bubble-border;
-    box-shadow: @chat-bubble-shadow;
-    border-radius: @chat-bubble-border-radius;
-    background-color: @chat-pink;
+  div.bubble-tray {
+    padding: 5px;
     position: relative;
-    cursor: pointer;
 
-    transform: scale(1);
-    transition: @chat-bubble-transition;
-    -moz-transform: scale(1);
-    -moz-transition: @chat-bubble-transition;
-    -ms-transform: scale(1);
-    -ms-transition: @chat-bubble-transition;
-    -webkit-transform: scale(1);
-    -webkit-transition: @chat-bubble-transition;
-    z-index: 1;
-
-    > hr {
-      margin: 10px auto;
-    }
-
-    .bubble-image {
-      width: 100%;
-
-      > img {
-        display: block;
-        margin: 10px auto;
-        width: 90%;
-        height: auto;
-      }
-    }
-
-    .bubble-interest {
-      text-align: center;
-
-      > h2 {
-        margin-top: 10px;
-      }
-    }
-
-    .favorite {
-      position: absolute;
-      top: 25px;
-      right: 30px;
-      font-size: 32pt;
+    div.chat-bubble {
+      border: @chat-bubble-border;
+      box-shadow: @chat-bubble-shadow;
+      border-radius: @chat-bubble-border-radius;
+      background-color: @chat-pink;
+      position: relative;
       cursor: pointer;
-      color: #fff45e;
-      opacity: 0.6;
+
+      transform: scale(1);
+      transition: @chat-bubble-transition;
+      -moz-transform: scale(1);
+      -moz-transition: @chat-bubble-transition;
+      -ms-transform: scale(1);
+      -ms-transition: @chat-bubble-transition;
+      -webkit-transform: scale(1);
+      -webkit-transition: @chat-bubble-transition;
+      z-index: 1;
+
+      > hr {
+        margin: 10px auto;
+      }
+
+      .bubble-image {
+        width: 100%;
+
+        > img {
+          display: block;
+          margin: 10px auto;
+          width: 90%;
+          height: auto;
+        }
+      }
+
+      .bubble-interest {
+        text-align: center;
+
+        > h2 {
+          margin-top: 10px;
+        }
+      }
+
+      .favorite {
+        position: absolute;
+        top: 25px;
+        right: 30px;
+        font-size: 32pt;
+        cursor: pointer;
+        color: #fff45e;
+        opacity: 0.6;
+
+        &:hover {
+          opacity: 1.0;
+        }
+      }
 
       &:hover {
-        opacity: 1.0;
+        transform: @hover-zoom-scale;
+        transition: @chat-bubble-transition;
+        -moz-transform: @hover-zoom-scale;
+        -moz-transition: @chat-bubble-transition;
+        -ms-transform: @hover-zoom-scale;
+        -ms-transition: @chat-bubble-transition;
+        -webkit-transform: @hover-zoom-scale;
+        -webkit-transition: @chat-bubble-transition;
+        z-index: 2;
       }
-    }
-
-    &:hover {
-      transform: @hover-zoom-scale;
-      transition: @chat-bubble-transition;
-      -moz-transform: @hover-zoom-scale;
-      -moz-transition: @chat-bubble-transition;
-      -ms-transform: @hover-zoom-scale;
-      -ms-transition: @chat-bubble-transition;
-      -webkit-transform: @hover-zoom-scale;
-      -webkit-transition: @chat-bubble-transition;
-      z-index: 2;
     }
   }
 }
