@@ -1,6 +1,9 @@
 @chat-bubble-border: 1px solid @chat-primary;
 @chat-bubble-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 @chat-bubble-border-radius: 10px;
+@chat-bubble-transition: all 0.1s ease-in-out;
+
+@hover-zoom-scale: scale(1.05);
 
 div.bubble-tray {
   padding: 5px;
@@ -12,14 +15,16 @@ div.bubble-tray {
     border-radius: @chat-bubble-border-radius;
     background-color: @chat-pink;
     position: relative;
+    cursor: pointer;
+
     transform: scale(1);
-    transition: all 0.1s ease-in-out;
+    transition: @chat-bubble-transition;
     -moz-transform: scale(1);
-    -moz-transition: all 0.1s ease-in-out;
+    -moz-transition: @chat-bubble-transition;
     -ms-transform: scale(1);
-    -ms-transition: all 0.1s ease-in-out;
+    -ms-transition: @chat-bubble-transition;
     -webkit-transform: scale(1);
-    -webkit-transition: all 0.1s ease-in-out;
+    -webkit-transition: @chat-bubble-transition;
     z-index: 1;
 
     > hr {
@@ -60,14 +65,14 @@ div.bubble-tray {
     }
 
     &:hover {
-      transform: scale(1.1);
-      transition: all 0.1s ease-in-out;
-      -moz-transform: scale(1.1);
-      -moz-transition: all 0.1s ease-in-out;
-      -ms-transform: scale(1.1);
-      -ms-transition: all 0.1s ease-in-out;
-      -webkit-transform: scale(1.1);
-      -webkit-transition: all 0.1s ease-in-out;
+      transform: @hover-zoom-scale;
+      transition: @chat-bubble-transition;
+      -moz-transform: @hover-zoom-scale;
+      -moz-transition: @chat-bubble-transition;
+      -ms-transform: @hover-zoom-scale;
+      -ms-transition: @chat-bubble-transition;
+      -webkit-transform: @hover-zoom-scale;
+      -webkit-transition: @chat-bubble-transition;
       z-index: 2;
     }
   }

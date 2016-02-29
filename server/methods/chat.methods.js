@@ -28,6 +28,31 @@ Meteor.methods({
     }
   },
 
+  joinChat: function(chatId) {
+    var user = Meteor.user();
+    var chat = ChatCollection.findOne({ _id: chatId });
+
+    if ( !user ) {
+      throw new Meteor.Error('user-not-found', "User not found");
+    } else if ( !chat ) {
+      throw new Meteor.Error('chat-not-found', "Chat not found");
+    }
+
+    var userInChat = _.contains( chat.participants, user._id );
+
+    if ( !userInChat ) {
+      ChatCollection.update({ _id: chat._id },
+        {
+          $push: {
+            participants: user._id,
+            usernames: user.username
+          }
+        }
+      );
+    }
+  },
+
+  //TODO no longer relevant, was made for one-on-one chat, needs revamp for chatroom
   insertMessage: function(chatId, message) {
     var user = Meteor.user();
     var chat = ChatCollection.findOne({ _id: chatId });

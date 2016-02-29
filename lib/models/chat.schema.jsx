@@ -45,6 +45,19 @@ Schema.Chat = new SimpleSchema({
 
   messages: {
     type: [Schema.ChatMessage]
+  },
+
+  lastUpdated: {
+    type: Date,
+    autoValue: function() {
+      if (this.isInsert) {
+        return new Date();
+      } else if (this.isUpdate) {
+        return new Date();
+      } else {
+        this.unset();
+      }
+    }
   }
 });
 

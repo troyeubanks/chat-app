@@ -8,7 +8,7 @@ LandingPage = React.createClass({
   getMeteorData: function() {
     return {
       user: Meteor.user(),
-      chats: ChatCollection.find({ participants: Meteor.userId() }).fetch()
+      chats: ChatCollection.find({}).fetch()
     };
   },
 

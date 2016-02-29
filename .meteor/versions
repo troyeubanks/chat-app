@@ -53,6 +53,8 @@ logging@1.0.8
 mdg:validation-error@0.2.0
 meteor@1.1.10
 meteor-base@1.0.1
+meteorhacks:async@1.0.0
+meteorhacks:npm@1.5.0
 minifiers@1.1.7
 minimongo@1.0.10
 mobile-experience@1.0.1
@@ -81,6 +83,7 @@ routepolicy@1.0.6
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4
+sjors:meteor-masonry@0.0.1
 spacebars@1.0.7
 spacebars-compiler@1.0.7
 srp@1.0.4
