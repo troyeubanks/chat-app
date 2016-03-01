@@ -19,7 +19,6 @@ boilerplate-generator@1.0.4
 caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
-camrongodbout:react-masonry-meteor@0.0.8
 check@1.1.0
 coffeescript@1.0.11
 cosmos:browserify@0.9.3
@@ -84,7 +83,6 @@ routepolicy@1.0.6
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4
-sjors:meteor-masonry@0.0.1
 spacebars@1.0.7
 spacebars-compiler@1.0.7
 srp@1.0.4

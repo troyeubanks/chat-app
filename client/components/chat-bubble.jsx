@@ -24,9 +24,15 @@ ChatBubble = React.createClass({
         console.error(error);
       }
     });
+
   },
 
   render: function() {
+
+    var masonryOptions = {
+      transitionDuration: 0
+    };
+
     return (
       <div className="bubble-tray col-sm-3">
         <div className="chat-bubble"
