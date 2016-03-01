@@ -9,9 +9,7 @@ if (Meteor.isServer) {
 
   Meteor.publish('myChats', function() {
     if (this.userId) {
-      return ChatCollection.find({
-        participants: this.userId
-      });
+      return ChatCollection.find();
     }
   });
 
@@ -20,8 +18,8 @@ if (Meteor.isServer) {
       return userId === message.sender;
     },
 
-    update: function(userId, chat) {
-      return _.contains( chat.participants, userId );
+    update: function() {
+      return Meteor.user();
     }
 
   });

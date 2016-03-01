@@ -8,11 +8,24 @@ LandingPage = React.createClass({
   getMeteorData: function() {
     return {
       user: Meteor.user(),
-      chats: ChatCollection.find({ participants: Meteor.userId() }).fetch()
+      chats: ChatCollection.find({}).fetch()
     };
   },
 
   render: function() {
+
+    var bubbleLayout = (
+      this.data.chats ?
+        this.data.chats.map( function(chat, counter) {
+          return (
+            <ChatBubble key={ counter++ }
+                        chatId={ chat._id } />
+          )
+        })
+      :
+        ''
+    );
+
     return (
       <div id="content">
         <div className="row">
@@ -27,17 +40,7 @@ LandingPage = React.createClass({
           this.data.user ?
             <div id="bubble-container">
               <div className="row">
-                {
-                  this.data.chats ?
-                    this.data.chats.map( function(chat, counter) {
-                      return (
-                        <ChatBubble key={ counter++ }
-                                    chatId={ chat._id } />
-                      )
-                    })
-                  :
-                    ''
-                }
+                { bubbleLayout }
               </div>
             </div>
           :

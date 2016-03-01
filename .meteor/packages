@@ -17,8 +17,6 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 
-npm-container
-react
 kadira:flow-router
 kadira:react-layout
 less
@@ -27,3 +25,9 @@ accounts-password
 aldeed:collection2
 check
 ejson
+meteorhacks:npm
+cosmos:browserify
+react
+
+
+npm-container

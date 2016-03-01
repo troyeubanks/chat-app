@@ -42,12 +42,13 @@ Nav = React.createClass({
       Meteor.call('insertChatRoom', topic, imageSrc, function (error) {
         if (error) {
           console.error("Error: ", error);
+          alert("Chat with this topic already exists");
+        } else {
+          this.bubbleInput.value = '';
+          this.setState({ open: false });
+          //TODO reset this.bubbleImage when image uploading is implemented
         }
-      });
-
-      this.bubbleInput.value = '';
-      this.setState({ open: false });
-      //TODO reset this.bubbleImage when image uploading is implemented
+      }.bind(this));
       e.preventDefault();
     }
   },

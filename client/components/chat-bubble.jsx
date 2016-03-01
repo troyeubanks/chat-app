@@ -11,17 +11,40 @@ ChatBubble = React.createClass({
     };
   },
 
+  toggleFavorite: function(e) {
+    e.stopPropagation();
+    console.log('favorite clicked');
+  },
+
+  joinChat: function(e) {
+    e.preventDefault();
+
+    Meteor.call('joinChat', this.data.chat._id, function(error) {
+      if (error) {
+        console.error(error);
+      }
+    });
+
+  },
+
   render: function() {
+
+    var masonryOptions = {
+      transitionDuration: 0
+    };
+
     return (
       <div className="bubble-tray col-sm-3">
-        <div className="chat-bubble">
+        <div className="chat-bubble"
+             onClick={ this.joinChat }>
           <div className="bubble-image">
             <img src={ this.data.chat.image } />
           </div>
 
           <hr />
 
-          <div className="favorite">
+          <div className="favorite"
+               onClick={ this.toggleFavorite }>
             &#9734;
           </div>
 
