@@ -52,7 +52,6 @@ Meteor.methods({
     }
   },
 
-  //TODO no longer relevant, was made for one-on-one chat, needs revamp for chatroom
   insertMessage: function(chatId, message) {
     var user = Meteor.user();
     var chat = ChatCollection.findOne({ _id: chatId });
@@ -62,7 +61,6 @@ Meteor.methods({
     }
 
     if ( user && chat ) {
-      var timestamp = Date.now();
       ChatCollection.update({ _id: chat._id },
         {
           $push: {
