@@ -23,7 +23,6 @@ ChatRoom = React.createClass({
             this.chatInput.value = '';
           }
         }.bind(this));
-
       }
     }.bind(this)
   },
